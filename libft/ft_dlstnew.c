@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_dlstnew.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alcierra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/08 16:56:22 by alcierra          #+#    #+#             */
-/*   Updated: 2022/01/14 18:35:14 by alcierra         ###   ########.fr       */
+/*   Created: 2022/01/18 18:15:27 by alcierra          #+#    #+#             */
+/*   Updated: 2022/01/18 18:16:16 by alcierra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <unistd.h>
 
-void	ft_putstr_fd(char *s, int fd)
+t_dlist	*ft_dlstnew(void *content)
 {
-	if (!s)
-		return ;
-	write(fd, s, ft_strlen(s));
+	t_dlist	*elem;
+
+	elem = (t_dlist *) malloc(sizeof(t_dlist));
+	if (!elem)
+		return (NULL);
+	elem->content = content;
+	elem->next = NULL;
+	elem->prev = NULL;
+	return (elem);
 }

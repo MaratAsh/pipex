@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_dlstadd_front.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alcierra <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: alcierra <alcierra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/08 16:56:22 by alcierra          #+#    #+#             */
-/*   Updated: 2022/01/14 18:35:14 by alcierra         ###   ########.fr       */
+/*   Created: 2022/01/18 18:19:57 by alcierra          #+#    #+#             */
+/*   Updated: 2022/01/18 18:23:03 by alcierra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <unistd.h>
 
-void	ft_putstr_fd(char *s, int fd)
+void	ft_dlstadd_front(t_dlist **lst, t_dlist *new_elem)
 {
-	if (!s)
-		return ;
-	write(fd, s, ft_strlen(s));
+	new_elem->next = *lst;
+	new_elem->next->prev = new_elem;
+	*lst = new_elem;
 }

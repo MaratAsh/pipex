@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_dlstsize_full.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alcierra <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: alcierra <alcierra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/08 16:56:22 by alcierra          #+#    #+#             */
-/*   Updated: 2022/01/14 18:35:14 by alcierra         ###   ########.fr       */
+/*   Created: 2022/01/18 18:29:48 by alcierra          #+#    #+#             */
+/*   Updated: 2022/01/18 18:35:04 by alcierra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <unistd.h>
 
-void	ft_putstr_fd(char *s, int fd)
+size_t	ft_dlstsize_full(t_dlist *dlst)
 {
-	if (!s)
-		return ;
-	write(fd, s, ft_strlen(s));
+	size_t	i;
+
+	while (dlst && dlst->prev)
+		dlst = dlst->prev;
+	i = 1;
+	if (!dlst)
+		return (0);
+	while (dlst && dlst->next)
+	{
+		dlst = dlst->next;
+		++i;
+	}
+	return (i);
 }
