@@ -6,14 +6,14 @@
 /*   By: alcierra <alcierra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 19:33:45 by alcierra          #+#    #+#             */
-/*   Updated: 2022/02/06 23:25:17 by alcierra         ###   ########.fr       */
+/*   Updated: 2022/02/07 13:36:02 by alcierra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pipex.h"
 #include <fcntl.h>
 
-static int ft_validate_fd(int fd, char *file_name)
+static int	ft_validate_fd(int fd, char *file_name)
 {
 	if (fd < 0)
 	{
