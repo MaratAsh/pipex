@@ -6,13 +6,13 @@
 /*   By: alcierra <alcierra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 16:06:59 by alcierra          #+#    #+#             */
-/*   Updated: 2022/02/07 18:32:11 by alcierra         ###   ########.fr       */
+/*   Updated: 2022/02/07 18:54:16 by alcierra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pipex.h"
 
-static char	*ft_find_path(char **paths)
+static char	*ft_find_path(char **paths, char *command)
 {
 	int		paths_shift;
 	int		finded;
@@ -43,21 +43,18 @@ char	*ft_command_path(char *command, char *envp[])
 {
 	char	*envpath;
 	char	**paths;
-	int		paths_shift;
 	char	*r_path;
-	char	finded;
 
 	command = ft_strjoin("/", command);
 	if (!command)
 		return (NULL);
-	finded = 0;
 	envpath = ft_search_envp_shift(envp, "PATH");
 	if (envpath == NULL)
 		envpath = "/usr/local/bin:/usr/bin:/bin:/usr/sbin";
 	paths = ft_split(envpath, ':');
 	if (!paths)
 		return (NULL);
-	r_path = ft_find_path(paths);
+	r_path = ft_find_path(paths, command);
 	free(paths);
 	free(command);
 	return (r_path);
