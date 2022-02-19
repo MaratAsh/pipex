@@ -6,7 +6,7 @@
 #    By: alcierra <alcierra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 19:26:21 by alcierra          #+#    #+#              #
-#    Updated: 2022/02/19 12:17:13 by alcierra         ###   ########.fr        #
+#    Updated: 2022/02/19 13:09:40 by alcierra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,18 +45,5 @@ fclean: clean
 		${CC} ${FLAGS} -c $< -o $@
 
 re: fclean all
-
-test_: all main-test.o
-		${CC} -I. $(INCLUDE) $(OBJS) main-test.o -o ${NAME:=-test}
-
-test: all
-		./${NAME} ./test/infile "ls -l" "wc -l" ./test/outfile_1
-		< ./test/infile ls -l | wc -l > ./test/outfile_1_o
-		diff ./test/outfile_1 ./test/outfile_1_o
-
-test_3: all
-		./${NAME} infile "ls -l" "cat -e" "wc -l" outfile_2
-		< infile ls -l | wc -l | cat -e > outfile_2_o
-		diff outfile_2 outfile_2_o
 
 .PHONY: all clean fclean re
