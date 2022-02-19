@@ -6,7 +6,7 @@
 #    By: alcierra <alcierra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 19:26:21 by alcierra          #+#    #+#              #
-#    Updated: 2022/02/06 23:10:36 by alcierra         ###   ########.fr        #
+#    Updated: 2022/02/19 12:17:13 by alcierra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ HEADER	=	ft_pipex.h
 SRCS	=	ft_pipex.c				child_process.c		\
 			ft_execute.c			ft_create_commfd.c	\
 			ft_search_envp.c		ft_command_path.c	\
-			ft_preprocess_commands.c
+			ft_preprocess_commands.c					\
+			ft_process_errors.c
 
 OBJS	=	${SRCS:.c=.o}
 FLAGS	=	-Wall -Wextra -Werror

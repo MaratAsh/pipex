@@ -6,24 +6,12 @@
 /*   By: alcierra <alcierra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 19:33:45 by alcierra          #+#    #+#             */
-/*   Updated: 2022/02/07 13:36:02 by alcierra         ###   ########.fr       */
+/*   Updated: 2022/02/19 12:16:50 by alcierra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pipex.h"
 #include <fcntl.h>
-
-static int	ft_validate_fd(int fd, char *file_name)
-{
-	if (fd < 0)
-	{
-		ft_putstr_fd("permission denied: ", 1);
-		ft_putstr_fd(file_name, 1);
-		ft_putstr_fd("\n", 1);
-		return (0);
-	}
-	return (1);
-}
 
 int	main(int argc, char *argv[], char *envp[])
 {
@@ -37,7 +25,7 @@ int	main(int argc, char *argv[], char *envp[])
 		return (0);
 	}
 	fd_in = open(argv[1], O_RDONLY);
-	fd_out = open(argv[argc - 1], O_WRONLY | O_CREAT, S_IWUSR);
+	fd_out = open(argv[argc - 1], O_WRONLY | O_CREAT, S_IWUSR | S_IREAD);
 	if (ft_validate_fd(fd_in, argv[1]) == 0
 		|| ft_validate_fd(fd_out, argv[argc - 1]) == 0)
 		return (0);

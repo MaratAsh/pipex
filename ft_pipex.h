@@ -6,7 +6,7 @@
 /*   By: alcierra <alcierra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 19:26:57 by alcierra          #+#    #+#             */
-/*   Updated: 2022/02/06 22:57:39 by alcierra         ###   ########.fr       */
+/*   Updated: 2022/02/19 12:16:32 by alcierra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,8 @@ char			*ft_search_envp(char *envp[], const char *param_name);
 char			*ft_search_envp_shift(char *envp[], const char *param_name);
 char			*ft_command_path(char *command, char *envp[]);
 t_command_fd	*ft_create_commfd(char *cmd);
+
+// ft_process_errors.c - for errors processing
+int				ft_validate_fd(int fd, char *file_name);
 
 #endif
