@@ -6,13 +6,13 @@
 /*   By: alcierra <alcierra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 15:13:02 by alcierra          #+#    #+#             */
-/*   Updated: 2022/02/07 18:59:11 by alcierra         ###   ########.fr       */
+/*   Updated: 2022/02/22 16:27:08 by alcierra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pipex.h"
 
-static void	ft_waitpd_all(pid_t	*child_array, int count)
+static void	ft_waitpd_all(pid_t	*child_array, const int count)
 {
 	int	index;
 	int	status;
@@ -31,7 +31,7 @@ static void	ft_command_close(t_command_fd *command)
 	close(command->out_fd);
 }
 
-void	ft_pipex(t_command_fd *commands[], int count, char *envp[])
+void	ft_pipex(t_command_fd **commands, const int count, char *envp[])
 {
 	int		index;
 	pid_t	child;
@@ -41,6 +41,14 @@ void	ft_pipex(t_command_fd *commands[], int count, char *envp[])
 	index = 0;
 	while (index < count)
 	{
+		printf("command ft_pipex >0  %s\n", commands[index]->command);
+		printf("command ft_pipex #%d \"%s\"\n", index, commands[index]->command);
+		index++;
+	}
+	index = 0;
+	while (index < count)
+	{
+		printf("command: %s\n", commands[index]->command);
 		child = fork();
 		if (child < 0)
 		{

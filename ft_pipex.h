@@ -6,7 +6,7 @@
 /*   By: alcierra <alcierra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 19:26:57 by alcierra          #+#    #+#             */
-/*   Updated: 2022/02/19 12:16:32 by alcierra         ###   ########.fr       */
+/*   Updated: 2022/02/22 15:01:50 by alcierra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ typedef struct s_command_fd
 	char	**params;
 }				t_command_fd;
 
-t_command_fd	**ft_preprocess_commands(char *commands[], int count,
+t_command_fd	**ft_preprocess_commands(char *commands[], const int count,
 					int fd_in, int fd_out);
-void			ft_pipex(t_command_fd *commands[], int count, char *envp[]);
+void			ft_pipex(t_command_fd **commands, int count, char *envp[]);
 void			child_process(t_command_fd *cmd_i, char **envp);
 int				ft_execute(char *command_params, char **envp);
 char			*ft_search_envp(char *envp[], const char *param_name);
