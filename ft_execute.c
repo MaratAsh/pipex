@@ -6,7 +6,7 @@
 /*   By: alcierra <alcierra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 19:25:56 by alcierra          #+#    #+#             */
-/*   Updated: 2022/02/07 14:01:33 by alcierra         ###   ########.fr       */
+/*   Updated: 2022/02/22 22:34:46 by alcierra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	ft_execute(char *command_params, char **envp)
 	char	**cmdp;
 	int		index;
 	char	*path;
+	int		res;
 
 	cmdp = ft_split((const char *) command_params, ' ');
 	if (!cmdp)
@@ -26,7 +27,7 @@ int	ft_execute(char *command_params, char **envp)
 		path = cmdp[index++];
 	else
 		path = ft_command_path(cmdp[0], envp);
-	execve(path, cmdp, envp);
+	res = execve(path, cmdp, envp);
 	free(path);
 	while (*(cmdp + index))
 	{
@@ -34,5 +35,5 @@ int	ft_execute(char *command_params, char **envp)
 		++index;
 	}
 	free(cmdp);
-	return (0);
+	return (res);
 }

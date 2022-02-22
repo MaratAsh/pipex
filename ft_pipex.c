@@ -6,7 +6,7 @@
 /*   By: alcierra <alcierra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 15:13:02 by alcierra          #+#    #+#             */
-/*   Updated: 2022/02/22 21:43:10 by alcierra         ###   ########.fr       */
+/*   Updated: 2022/02/22 23:00:46 by alcierra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,26 @@ static void	ft_command_close(t_command_fd *command)
 	close(command->out_fd);
 }
 
-void	ft_pipex(t_command_fd **commands, const int count, char *envp[])
+static void	ft_child_or_parent(pid_t pid, t_command_fd *cmd,
+				char **envp, pid_t *child_array)
+{
+	int	res;
+
+	if (pid < 0)
+	{
+		perror("Fork: ");
+		ft_command_close(cmd);
+		exit(-1);
+	}
+	if (pid == 0)
+	{
+		res = child_process(cmd, envp);
+		free(child_array);
+		exit(res);
+	}
+}
+
+int	ft_pipex(t_command_fd **commands, const int count, char *envp[])
 {
 	int		index;
 	pid_t	child;
@@ -42,22 +61,12 @@ void	ft_pipex(t_command_fd **commands, const int count, char *envp[])
 	while (index < count)
 	{
 		child = fork();
-		if (child < 0)
-		{
-			perror("Fork: ");
-			ft_command_close(commands[index]);
-			exit(-1);
-		}
-		if (child == 0)
-		{
-			child_process(commands[index], envp);
-			free(child_array);
-			exit(0);
-		}
+		ft_child_or_parent(child, *(commands + index), envp, child_array);
 		ft_command_close(commands[index]);
 		child_array[index] = child;
 		++index;
 	}
 	ft_waitpd_all(child_array, count);
 	free(child_array);
+	return (0);
 }
