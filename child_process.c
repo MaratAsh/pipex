@@ -6,7 +6,7 @@
 /*   By: alcierra <alcierra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 15:20:45 by alcierra          #+#    #+#             */
-/*   Updated: 2022/02/06 23:21:49 by alcierra         ###   ########.fr       */
+/*   Updated: 2022/02/22 21:43:20 by alcierra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,4 @@ void	child_process(t_command_fd *cmd_i, char **envp)
 		close(STDIN_FILENO);
 	if (cmd_i->out_fd != -1)
 		close(STDOUT_FILENO);
-	exit(0);
 }

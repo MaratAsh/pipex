@@ -6,7 +6,7 @@
 /*   By: alcierra <alcierra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 15:13:02 by alcierra          #+#    #+#             */
-/*   Updated: 2022/02/22 16:27:08 by alcierra         ###   ########.fr       */
+/*   Updated: 2022/02/22 21:43:10 by alcierra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,6 @@ void	ft_pipex(t_command_fd **commands, const int count, char *envp[])
 	index = 0;
 	while (index < count)
 	{
-		printf("command ft_pipex >0  %s\n", commands[index]->command);
-		printf("command ft_pipex #%d \"%s\"\n", index, commands[index]->command);
-		index++;
-	}
-	index = 0;
-	while (index < count)
-	{
-		printf("command: %s\n", commands[index]->command);
 		child = fork();
 		if (child < 0)
 		{
@@ -57,7 +49,11 @@ void	ft_pipex(t_command_fd **commands, const int count, char *envp[])
 			exit(-1);
 		}
 		if (child == 0)
+		{
 			child_process(commands[index], envp);
+			free(child_array);
+			exit(0);
+		}
 		ft_command_close(commands[index]);
 		child_array[index] = child;
 		++index;

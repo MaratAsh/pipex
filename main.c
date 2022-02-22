@@ -6,12 +6,25 @@
 /*   By: alcierra <alcierra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 19:33:45 by alcierra          #+#    #+#             */
-/*   Updated: 2022/02/22 16:55:50 by alcierra         ###   ########.fr       */
+/*   Updated: 2022/02/22 21:38:04 by alcierra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pipex.h"
 #include <fcntl.h>
+
+static void ft_commands_free(t_command_fd **commands_array, const int count)
+{
+	int	index;
+
+	index = 0;
+	while (index < count)
+	{
+		free(commands_array[index]);
+		++index;
+	}
+	free(commands_array);
+}
 
 int	main(int argc, char *argv[], char *envp[])
 {
@@ -43,13 +56,7 @@ int	main(int argc, char *argv[], char *envp[])
 		|| ft_validate_fd(fd_out, p_argv[p_argc - 1]) == 0)
 		return (0);
 	array = ft_preprocess_commands(p_argv + 1, p_argc - 2, fd_in, fd_out);
-	int index = 0;
-	while (index < p_argc - 2)
-	{
-		printf("command #%d \"%s\"\n", index, array[index]->command);
-		index++;
-	}
 	ft_pipex(array, p_argc - 2, envp);
-	free(array);
+	ft_commands_free(array, p_argc - 2);
 	return (0);
 }
