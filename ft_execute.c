@@ -6,11 +6,28 @@
 /*   By: alcierra <alcierra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 19:25:56 by alcierra          #+#    #+#             */
-/*   Updated: 2022/02/22 22:34:46 by alcierra         ###   ########.fr       */
+/*   Updated: 2022/02/22 23:50:16 by alcierra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_pipex.h"
+
+static void	ft_command_not_exist(char *filename)
+{
+	write(2, filename, ft_strlen(filename));
+	write(2, ": command not found\n", 20);
+}
+
+static int	ft_free(char **cmdp, int index)
+{
+	while (*(cmdp + index))
+	{
+		free(cmdp[index]);
+		++index;
+	}
+	free(cmdp);
+	return (0);
+}
 
 int	ft_execute(char *command_params, char **envp)
 {
@@ -27,13 +44,15 @@ int	ft_execute(char *command_params, char **envp)
 		path = cmdp[index++];
 	else
 		path = ft_command_path(cmdp[0], envp);
-	res = execve(path, cmdp, envp);
-	free(path);
-	while (*(cmdp + index))
+	if (path)
 	{
-		free(cmdp[index]);
-		++index;
+		res = execve(path, cmdp, envp);
+		if (res < 0)
+			perror(path);
+		free(path);
 	}
-	free(cmdp);
+	else
+		ft_command_not_exist(cmdp[0]);
+	ft_free(cmdp, index);
 	return (res);
 }

@@ -6,7 +6,7 @@
 /*   By: alcierra <alcierra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 19:33:45 by alcierra          #+#    #+#             */
-/*   Updated: 2022/02/22 22:51:48 by alcierra         ###   ########.fr       */
+/*   Updated: 2022/02/22 23:20:31 by alcierra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ static t_command_fd	**ft_preprocess_args(int p_argc, char **p_argv, int *argc)
 	int				fd_in;
 	int				fd_out;
 
+	fd_in = open(p_argv[0], O_RDONLY);
+	if (fd_in < 0)
+		perror(p_argv[0]);
 	if (ft_strncmp(p_argv[0], "here_doc", 9) == 0)
 	{
 		p_argv++;
@@ -40,12 +43,10 @@ static t_command_fd	**ft_preprocess_args(int p_argc, char **p_argv, int *argc)
 				S_IWUSR | S_IRUSR);
 	}
 	else
-		fd_out = open(p_argv[p_argc - 1], O_TRUNC | O_WRONLY | O_CREAT,
+		fd_out = open(p_argv[p_argc - 1], O_TRUNC | O_WRONLY,
 				S_IWUSR | S_IRUSR);
-	fd_in = open(p_argv[0], O_RDONLY);
-	if (ft_validate_fd(fd_in, p_argv[0]) == 0
-		|| ft_validate_fd(fd_out, p_argv[p_argc - 1]) == 0)
-		return (0);
+	if (fd_out < 0)
+		perror(p_argv[p_argc - 1]);
 	array = ft_preprocess_commands(p_argv + 1, p_argc - 2, fd_in, fd_out);
 	*argc = p_argc;
 	return (array);

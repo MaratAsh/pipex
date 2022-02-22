@@ -6,7 +6,7 @@
 #    By: alcierra <alcierra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 19:26:21 by alcierra          #+#    #+#              #
-#    Updated: 2022/02/19 13:09:40 by alcierra         ###   ########.fr        #
+#    Updated: 2022/02/22 23:24:00 by alcierra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRCS	=	ft_pipex.c				child_process.c		\
 			ft_process_errors.c
 
 OBJS	=	${SRCS:.c=.o}
-FLAGS	=	-Wall -Wextra -Werror
+FLAGS	=	-Wall -Wextra -Werror -g
 CC		=	gcc
 
 INCLUDE	=	./libft/libft.a
