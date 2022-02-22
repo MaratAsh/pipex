@@ -6,7 +6,7 @@
 /*   By: alcierra <alcierra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 19:33:45 by alcierra          #+#    #+#             */
-/*   Updated: 2022/02/22 16:22:02 by alcierra         ###   ########.fr       */
+/*   Updated: 2022/02/22 16:55:50 by alcierra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ int	main(int argc, char *argv[], char *envp[])
 	{
 		p_argv = argv + 2;
 		p_argc = argc - 2;
-		fd_out = open(p_argv[p_argc - 1], O_APPEND, S_IWUSR | S_IREAD);
+		fd_out = open(p_argv[p_argc - 1], O_APPEND, S_IWUSR | S_IRUSR);
 	}
 	else
 	{
 		p_argv = argv + 1;
 		p_argc = argc - 1;
-		fd_out = open(argv[p_argc], O_WRONLY | O_CREAT, S_IWUSR | S_IREAD);
+		fd_out = open(argv[p_argc], O_WRONLY | O_CREAT, S_IWUSR | S_IRUSR);
 	}
 	fd_in = open(p_argv[0], O_RDONLY);
 	if (ft_validate_fd(fd_in, p_argv[0]) == 0
