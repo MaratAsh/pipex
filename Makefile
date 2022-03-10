@@ -6,7 +6,7 @@
 #    By: alcierra <alcierra@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 19:26:21 by alcierra          #+#    #+#              #
-#    Updated: 2022/02/22 23:24:00 by alcierra         ###   ########.fr        #
+#    Updated: 2022/03/10 16:16:59 by alcierra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,24 +22,29 @@ OBJS	=	${SRCS:.c=.o}
 FLAGS	=	-Wall -Wextra -Werror -g
 CC		=	gcc
 
-INCLUDE	=	./libft/libft.a
-I_MAKE	=	make -C $(dir $(INCLUDE))
+LIB_INCL	=	./libft/libft.a
+GNL_INCL	=	./get_next_line/get_next_line.a
+LIB_MAKE	=	make -C $(dir $(LIB_INCL))
+GNL_MAKE	=	make -C $(dir $(GNL_INCL))
 
 all: lib $(NAME)
 
 lib:
-		${I_MAKE} bonus && ${I_MAKE} all
+		${LIB_MAKE} bonus && ${LIB_MAKE} all
+		${GNL_MAKE} all
 
 $(NAME): ${OBJS} main.o ${HEADER}
-		${CC} $(OBJS) main.o -o $(NAME) -I. $(INCLUDE)
+		${CC} $(OBJS) main.o -o $(NAME) -I. $(LIB_INCL) $(GNL_INCL)
 
 clean:
 		rm -rf ${OBJS} ${B_OBJS} main.o
-		${I_MAKE} clean
+		${LIB_MAKE} clean
+		${GNL_MAKE} clean
 
 fclean: clean
 		rm -rf ${NAME}
-		${I_MAKE} fclean
+		${LIB_MAKE} fclean
+		${GNL_MAKE} fclean
 
 %.o : %.c ${HEADER}
 		${CC} ${FLAGS} -c $< -o $@
