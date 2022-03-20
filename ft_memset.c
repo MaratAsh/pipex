@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alcierra <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: alcierra <alcierra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/10 18:53:38 by alcierra          #+#    #+#             */
-/*   Updated: 2021/10/10 19:00:35 by alcierra         ###   ########.fr       */
+/*   Created: 2021/10/05 14:21:06 by alcierra          #+#    #+#             */
+/*   Updated: 2022/03/14 14:26:40 by alcierra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_pipex.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(void *))
+void	*ft_memset(void *b, int c, size_t len)
 {
-	if (!lst)
-		return ;
-	f(lst->content);
-	while (lst->next)
+	unsigned char	*temp;
+
+	temp = (unsigned char *) b;
+	while (len)
 	{
-		f(lst->next->content);
-		lst = lst->next;
+		temp[len - 1] = (unsigned char) c;
+		len--;
 	}
+	return (b);
 }

@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alcierra <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: alcierra <alcierra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/05 16:37:07 by alcierra          #+#    #+#             */
-/*   Updated: 2021/10/05 16:42:42 by alcierra         ###   ########.fr       */
+/*   Created: 2021/10/05 14:14:04 by alcierra          #+#    #+#             */
+/*   Updated: 2022/03/14 14:10:48 by alcierra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_toupper(int c)
+#include "ft_pipex.h"
+
+size_t	ft_strlen(char *s)
 {
-	if (c >= 'a' && c <= 'z')
-		return (c - 32);
-	return (c);
+	size_t	sz;
+
+	sz = 0;
+	while (s[sz])
+		sz++;
+	return (sz);
 }

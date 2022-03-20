@@ -1,19 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dlstdelone.c                                    :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alcierra <alcierra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/18 19:55:53 by alcierra          #+#    #+#             */
-/*   Updated: 2022/01/18 19:58:47 by alcierra         ###   ########.fr       */
+/*   Created: 2021/10/05 16:04:22 by alcierra          #+#    #+#             */
+/*   Updated: 2022/03/14 14:10:05 by alcierra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_pipex.h"
 
-void	ft_dlstdelone(t_dlist *dlst, void (*del)(void*))
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	del(dlst->content);
-	free(dlst);
+	size_t	i;
+
+	i = 0;
+	if (size == 0)
+		return (ft_strlen((char *) src));
+	while (src[i])
+	{
+		if (i == size - 1)
+			break ;
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = 0;
+	return (ft_strlen((char *) src));
 }

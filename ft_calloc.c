@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alcierra <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: alcierra <alcierra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/10 17:38:06 by alcierra          #+#    #+#             */
-/*   Updated: 2021/10/10 17:42:14 by alcierra         ###   ########.fr       */
+/*   Created: 2021/10/05 14:28:28 by alcierra          #+#    #+#             */
+/*   Updated: 2022/03/14 14:25:28 by alcierra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_pipex.h"
 
-t_list	*ft_lstnew(void *content)
+void	*ft_calloc(size_t count, size_t size)
 {
-	t_list	*elem;
+	void	*arr;
 
-	elem = (t_list *) malloc(sizeof(t_list));
-	if (!elem)
+	if (count < 1 || size < 1)
+	{
+		count = 1;
+		size = 1;
+	}
+	arr = malloc(count * size);
+	if (!arr)
 		return (NULL);
-	elem->content = content;
-	elem->next = NULL;
-	return (elem);
+	ft_memset(arr, 0, size * count);
+	return (arr);
 }

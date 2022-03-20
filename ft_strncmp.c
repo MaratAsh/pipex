@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dlstadd_back.c                                  :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alcierra <alcierra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/18 18:44:47 by alcierra          #+#    #+#             */
-/*   Updated: 2022/01/18 18:57:58 by alcierra         ###   ########.fr       */
+/*   Created: 2021/10/05 17:07:16 by alcierra          #+#    #+#             */
+/*   Updated: 2022/03/14 14:11:53 by alcierra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_pipex.h"
 
-void	ft_dlstadd_back(t_dlist **dlst, t_dlist *new_elem)
+int	ft_strncmp(const char *str1, const char *str2, size_t n)
 {
-	t_dlist	*iter;
+	size_t			i;
+	unsigned char	*s1;
+	unsigned char	*s2;
 
-	iter = *dlst;
-	while (iter && iter->next)
-	{
-		iter = iter->next;
-	}
-	new_elem->prev = iter;
-	iter->next = new_elem;
+	s1 = (unsigned char *) str1;
+	s2 = (unsigned char *) str2;
+	i = 0;
+	while (s1[i] == s2[i] && i < n && s1[i] != 0)
+		i++;
+	if (i == n)
+		return (s1[i - 1] - s2[i - 1]);
+	return (s1[i] - s2[i]);
 }

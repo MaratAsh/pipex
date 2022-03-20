@@ -1,41 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dlstmap.c                                       :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alcierra <alcierra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/18 20:10:52 by alcierra          #+#    #+#             */
-/*   Updated: 2022/01/18 20:29:09 by alcierra         ###   ########.fr       */
+/*   Created: 2021/10/05 17:45:00 by alcierra          #+#    #+#             */
+/*   Updated: 2022/03/14 14:30:35 by alcierra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_pipex.h"
 
-t_dlist	*ft_dlstmap(t_dlist *dlst, void *(*f)(void *))
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	t_dlist	*start;
-	t_dlist	*curr;
+	size_t	i;
+	size_t	j;
 
-	start = NULL;
-	if (dlst)
+	i = 0;
+	if (*needle == 0)
+		return ((char *) haystack);
+	while (haystack[i] && i < len)
 	{
-		start = ft_dlstnew(f(dlst->content));
-		dlst = dlst->next;
-		curr = start;
-	}
-	while (dlst)
-	{
-		if (curr)
-			curr->next = ft_dlstnew(f(dlst->content));
-		else
-			break ;
-		if (curr && curr->next)
+		if (haystack[i] == needle[0])
 		{
-			curr->next->prev = curr;
-			curr = curr->next;
+			j = 0;
+			while (haystack[i + j] == needle[j]
+				&& needle[j] != 0 && i + j < len)
+				j++;
+			if (needle[j] == 0)
+				return ((char *) haystack + i);
 		}
-		dlst = dlst->next;
+		i++;
 	}
-	return (start);
+	return ((void *) 0);
 }
