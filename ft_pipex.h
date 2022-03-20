@@ -6,7 +6,7 @@
 /*   By: alcierra <alcierra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 19:26:57 by alcierra          #+#    #+#             */
-/*   Updated: 2022/03/14 14:30:18 by alcierra         ###   ########.fr       */
+/*   Updated: 2022/03/20 23:05:31 by alcierra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <stdio.h>
 # include <sys/types.h>
 # include <sys/wait.h>
-# include "libft/libft.h"
 
 # define STDIN_FILENO 0
 # define STDOUT_FILENO 1
