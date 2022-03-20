@@ -6,7 +6,7 @@
 /*   By: alcierra <alcierra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 19:33:45 by alcierra          #+#    #+#             */
-/*   Updated: 2022/03/10 18:06:02 by alcierra         ###   ########.fr       */
+/*   Updated: 2022/03/20 22:50:38 by alcierra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ static int	ft_input_fd(char **p_argv)
 		{
 			write(1, "here_doc > ", 12);
 			line = get_next_line(0);
-			printf("%s\n", line);
 			while (line)
 			{
 				symbnl = ft_strchr(line, '\n');
@@ -55,8 +54,6 @@ static int	ft_input_fd(char **p_argv)
 					*symbnl = '\0';
 				if (ft_strncmp(line, p_argv[1], ft_strlen(line) + 1) == 0)
 				{
-					close(fds[1]);
-					close(fds[0]);
 					free(line);
 					break ;
 				}
@@ -67,8 +64,11 @@ static int	ft_input_fd(char **p_argv)
 				free(line);
 				line = get_next_line(0);
 			}
+			close(fds[1]);
+			close(fds[0]);
 			exit(0);
 		}
+		close(fds[1]);
 	}
 	else
 		fds[0] = open(p_argv[0], O_RDONLY);
@@ -84,7 +84,7 @@ static t_command_fd	**ft_preprocess_args(int p_argc, char **p_argv, int *argc)
 	fd_in = ft_input_fd(p_argv);
 	if (fd_in < 0)
 		perror(p_argv[0]);
-	if (ft_strncmp(p_argv[0], "append", 7) == 0)
+	if (ft_strncmp(p_argv[0], "here_doc", 7) == 0)
 	{
 		p_argv++;
 		p_argc--;
@@ -92,7 +92,7 @@ static t_command_fd	**ft_preprocess_args(int p_argc, char **p_argv, int *argc)
 				S_IWUSR | S_IRUSR);
 	}
 	else
-		fd_out = open(p_argv[p_argc - 1], O_TRUNC | O_WRONLY,
+		fd_out = open(p_argv[p_argc - 1], O_TRUNC | O_WRONLY | O_CREAT,
 				S_IWUSR | S_IRUSR);
 	if (fd_out < 0)
 		perror(p_argv[p_argc - 1]);
