@@ -6,7 +6,7 @@
 /*   By: alcierra <alcierra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 19:33:45 by alcierra          #+#    #+#             */
-/*   Updated: 2022/03/23 14:03:25 by alcierra         ###   ########.fr       */
+/*   Updated: 2022/03/23 18:15:09 by alcierra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	main(int argc, char *argv[], char *envp[])
 	int				p_argc;
 	int				res;
 
-	if (argc != 4)
+	if (argc != 5)
 	{
 		ft_putstr_fd(ERR_PARAM_COUNT_MSG, 2);
 		return (0);
