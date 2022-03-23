@@ -6,7 +6,7 @@
 /*   By: alcierra <alcierra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 19:25:56 by alcierra          #+#    #+#             */
-/*   Updated: 2022/02/22 23:50:16 by alcierra         ###   ########.fr       */
+/*   Updated: 2022/03/23 12:56:28 by alcierra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	ft_execute(char *command_params, char **envp)
 	char	*path;
 	int		res;
 
+	res = 0;
 	cmdp = ft_split((const char *) command_params, ' ');
 	if (!cmdp)
 		return (-1);
