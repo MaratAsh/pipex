@@ -6,7 +6,7 @@
 /*   By: alcierra <alcierra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 19:26:57 by alcierra          #+#    #+#             */
-/*   Updated: 2022/03/22 14:53:09 by alcierra         ###   ########.fr       */
+/*   Updated: 2022/03/23 14:17:56 by alcierra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,7 @@
 
 # define STDIN_FILENO 0
 # define STDOUT_FILENO 1
-# define ERR_PARAM_COUNT_MSG "Usage example:\n\
-./pipex infile \"ls -l\" \"wc -l\" outfile\n\
-< infile ls -l | wc -l > outfile\n"
+# define ERR_PARAM_COUNT_MSG "Invalid Count of Arguments\n"
 
 typedef struct s_command_fd
 {
@@ -43,6 +41,8 @@ char			*ft_search_envp(char *envp[], const char *param_name);
 char			*ft_search_envp_shift(char *envp[], const char *param_name);
 char			*ft_command_path(char *command, char *envp[]);
 t_command_fd	*ft_create_commfd(char *cmd);
+
+int				ft_input_fd(char **p_argv);
 
 // ft_process_errors.c - for errors processing
 int				ft_validate_fd(int fd, char *file_name);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main-bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alcierra <alcierra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 19:33:45 by alcierra          #+#    #+#             */
-/*   Updated: 2022/03/23 14:03:25 by alcierra         ###   ########.fr       */
+/*   Updated: 2022/03/23 14:03:38 by alcierra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	main(int argc, char *argv[], char *envp[])
 	int				p_argc;
 	int				res;
 
-	if (argc != 4)
+	if (argc == 1 || argc < 5 + (ft_strncmp(argv[1], "here_doc", 9) == 0))
 	{
 		ft_putstr_fd(ERR_PARAM_COUNT_MSG, 2);
 		return (0);
